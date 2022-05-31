@@ -1,6 +1,12 @@
-﻿# include <Siv3D.hpp> // OpenSiv3D v0.6.3
+﻿#include "Common.h"
+#include "GameBoard.h"
 
 void Main() {
+    Scene::SetBackground(ColorF{ Palette::Mediumseagreen });
+
+    GameBoard gameBoard;
+
     while (System::Update()) {
+        gameBoard.draw();
     }
 }
