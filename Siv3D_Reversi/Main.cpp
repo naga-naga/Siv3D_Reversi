@@ -8,5 +8,6 @@ void Main() {
 
     while (System::Update()) {
         gameBoard.draw();
+        gameBoard.update();
     }
 }

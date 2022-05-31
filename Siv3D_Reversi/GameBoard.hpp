@@ -9,7 +9,9 @@ public:
 
     static constexpr int32 White = -1;
 
-	GameBoard();
+    GameBoard();
+
+    void update();
 
     void draw() const;
 
@@ -19,9 +21,15 @@ private:
     // 実際には 1 ~ 8 を使う
     Grid<int32> stones = Grid<int32>(10, 10);
 
+    int32 currentPlayer = Black;
+
     ColorF lineColor = ColorF{ 0.2 };
 
     void drawGridLine() const;
 
     void drawCells() const;
+
+    int32 flipStones(Point cell);
+
+    int32 flipLine(Point cell, Point direction);
 };
