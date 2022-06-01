@@ -84,6 +84,23 @@ void GameBoard::drawCells() const {
             }
         }
     }
+
+    // 石を置けるセルを探す
+    const Array<Point> cellsCanPlaceStone = findCellsCanPlaceStone();
+
+    // 石を置けるセルを強調する
+    for (auto c : cellsCanPlaceStone) {
+        // 強調するセル
+        const Rect colorCell{ (c.x * CellSize), (c.y * CellSize), CellSize };
+
+        // 半透明の白を描く
+        colorCell.stretched(-2).draw(ColorF{ 1.0, 0.6 });
+
+        if (colorCell.mouseOver()) {
+            // カーソルを手のアイコンにする
+            Cursor::RequestStyle(CursorStyle::Hand);
+        }
+    }
 }
 
 // 8方向の石をひっくり返す
@@ -130,4 +147,68 @@ int32 GameBoard::flipLine(Point placedPos, Point direction) {
     }
 
     return numberOfFlipped;
+}
+
+// 石を置けるセルを探す
+// 返り値: 石を置けるセルを格納した Array
+Array<Point> GameBoard::findCellsCanPlaceStone() const {
+    Array<Point> cellsCanPlaceStone;
+
+    // 全てのセルを見る
+    for (int32 x = 1; x <= 8; x++) {
+        for (int32 y = 1; y <= 8; y++) {
+            // すでに石が置かれていれば次のマスを見る
+            if (stones[y][x] != 0) {
+                continue;
+            }
+
+            Array<Point> flippableCells;
+
+            // 8方向確認する
+            for (auto i : { -1, 0, 1 }) {
+                for (auto j : { -1, 0, 1 }) {
+                    // (x, y) に石を置いたときにひっくり返せるセル
+                    flippableCells.append(findFlippableCells(Point{ x, y }, Point{ i, j }));
+                }
+            }
+
+            // (x, y) に石を置いたときに返せるセルがある場合
+            if (not flippableCells.isEmpty()) {
+                // ここに石を置ける
+                cellsCanPlaceStone.push_back(Point{ x, y });
+            }
+        }
+    }
+
+    return cellsCanPlaceStone;
+}
+
+// ひっくり返せるセルを探す
+// placedPos: 石を置いたセル
+// direction: 探す方向
+// 返り値: 返せるセルを格納した Array
+Array<Point> GameBoard::findFlippableCells(Point placedPos, Point direction) const {
+    Point pos = placedPos + direction;
+
+    // 自分と反対の色の間 direction の方向を見ていく
+    while (stones[pos.y][pos.x] == -currentPlayer) {
+        pos += direction;
+    }
+
+    // 挟めていなかった場合はここで終了
+    if (stones[pos.y][pos.x] != currentPlayer) {
+        return Array<Point>{};
+    }
+
+    Array<Point> flippableCells;
+
+    // 挟めていた場合はひっくり返せる
+    pos -= direction;
+    while (pos != placedPos) {
+        // pos はひっくり返せるセル
+        flippableCells.push_back(pos);
+        pos -= direction;
+    }
+
+    return flippableCells;
 }

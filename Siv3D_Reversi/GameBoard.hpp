@@ -32,4 +32,8 @@ private:
     int32 flipStones(Point cell);
 
     int32 flipLine(Point cell, Point direction);
+
+    Array<Point> findCellsCanPlaceStone() const;
+
+    Array<Point> findFlippableCells(Point placedPos, Point direction) const;
 };
