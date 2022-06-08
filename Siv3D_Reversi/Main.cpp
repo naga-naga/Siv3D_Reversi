@@ -9,5 +9,9 @@ void Main() {
     while (System::Update()) {
         gameBoard.draw();
         gameBoard.update();
+
+        if (SimpleGUI::Button(U"reset", Vec2{ 500, 10 })) {
+            gameBoard.reset();
+        }
     }
 }

@@ -1,10 +1,7 @@
 ﻿#include "GameBoard.hpp"
 
 GameBoard::GameBoard() {
-    stones[4][5] = Black;
-    stones[5][4] = Black;
-    stones[4][4] = White;
-    stones[5][5] = White;
+    this->reset();
 }
 
 void GameBoard::update() {
@@ -43,6 +40,14 @@ void GameBoard::update() {
 void GameBoard::draw() const {
     drawGridLine();
     drawCells();
+}
+
+void GameBoard::reset() {
+    stones.fill(0);
+    stones[4][5] = Black;
+    stones[5][4] = Black;
+    stones[4][4] = White;
+    stones[5][5] = White;
 }
 
 // 格子を描く

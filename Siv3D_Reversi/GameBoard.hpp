@@ -15,6 +15,8 @@ public:
 
     void draw() const;
 
+    void reset();
+
 private:
     // 置かれた石を表す
     // 角での計算を楽にするため，上下左右1マスずつ大きくとる
