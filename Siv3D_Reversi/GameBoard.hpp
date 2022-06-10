@@ -27,6 +27,8 @@ private:
 
     ColorF lineColor = ColorF{ 0.2 };
 
+    void updateStones();
+
     void drawGridLine() const;
 
     void drawCells() const;

@@ -5,6 +5,24 @@ GameBoard::GameBoard() {
 }
 
 void GameBoard::update() {
+    updateStones();
+}
+
+void GameBoard::draw() const {
+    drawGridLine();
+    drawCells();
+}
+
+void GameBoard::reset() {
+    stones.fill(0);
+    stones[4][5] = Black;
+    stones[5][4] = Black;
+    stones[4][4] = White;
+    stones[5][5] = White;
+}
+
+// 石の配置と反転
+void GameBoard::updateStones() {
     for (int32 i = 1; i <= 8; i++) {
         for (int32 j = 1; j <= 8; j++) {
             // セル
@@ -34,19 +52,6 @@ void GameBoard::update() {
             }
         }
     }
-}
-
-void GameBoard::draw() const {
-    drawGridLine();
-    drawCells();
-}
-
-void GameBoard::reset() {
-    stones.fill(0);
-    stones[4][5] = Black;
-    stones[5][4] = Black;
-    stones[4][4] = White;
-    stones[5][5] = White;
 }
 
 // 格子を描く
