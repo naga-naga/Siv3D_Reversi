@@ -29,8 +29,7 @@ void GameBoard::update() {
                     // クリックしたマスに石を置く
                     stones[placedPos.y][placedPos.x] = currentPlayer;
 
-                    // 手番交代
-                    currentPlayer *= -1;
+                    changePlayer();
                 }
             }
         }
@@ -216,4 +215,9 @@ Array<Point> GameBoard::findFlippableCells(Point placedPos, Point direction) con
     }
 
     return flippableCells;
+}
+
+// 手番を交代する
+void GameBoard::changePlayer() {
+    currentPlayer *= -1;
 }
