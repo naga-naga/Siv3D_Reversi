@@ -6,6 +6,10 @@ GameBoard::GameBoard() {
 
 void GameBoard::update() {
     updateStones();
+    // 石を置ける場所がなければパス
+    if (not canPlaceStone()) {
+        changePlayer();
+    }
 }
 
 void GameBoard::draw() const {
@@ -225,4 +229,10 @@ Array<Point> GameBoard::findFlippableCells(Point placedPos, Point direction) con
 // 手番を交代する
 void GameBoard::changePlayer() {
     currentPlayer *= -1;
+}
+
+// 石を置ける場所があるか？
+bool GameBoard::canPlaceStone() {
+    const Array<Point> cellsCanPlaceStone = findCellsCanPlaceStone();
+    return not cellsCanPlaceStone.isEmpty();
 }

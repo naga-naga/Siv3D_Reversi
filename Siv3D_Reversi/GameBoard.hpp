@@ -42,4 +42,6 @@ private:
     Array<Point> findFlippableCells(Point placedPos, Point direction) const;
 
     void changePlayer();
+
+    bool canPlaceStone();
 };
