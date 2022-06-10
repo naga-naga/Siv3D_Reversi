@@ -16,17 +16,17 @@ void GameBoard::update() {
             // 空白セルをクリックした場合
             if ((stone == 0) && cell.leftClicked()) {
                 // 置かれた場所
+                // (1, 1) ~ (8, 8) に変換する
                 const Point placedPos = cell.tl() / CellSize;
 
-                // 置けるか判定する
-                // (1, 1) ~ (8, 8) に変換する
+                // 石を置いてひっくり返す
                 const int32 numberOfFlipped = flipStones(placedPos);
 
                 if (numberOfFlipped == 0) {
                     // 返せなかった場合は何もしない
                     continue;
                 } else {
-                    // 石を置く
+                    // クリックしたマスに石を置く
                     stones[placedPos.y][placedPos.x] = currentPlayer;
 
                     // 手番交代
