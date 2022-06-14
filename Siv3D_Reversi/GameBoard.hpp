@@ -17,6 +17,10 @@ public:
 
     void reset();
 
+    int32 getNumberOfBlackStones();
+
+    int32 getNumberOfWhiteStones();
+
 private:
     // 置かれた石を表す
     // 角での計算を楽にするため，上下左右1マスずつ大きくとる

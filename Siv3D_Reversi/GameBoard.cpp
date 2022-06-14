@@ -25,6 +25,16 @@ void GameBoard::reset() {
     stones[5][5] = White;
 }
 
+// 黒の石の数を返す
+int32 GameBoard::getNumberOfBlackStones() {
+    return static_cast<int32>(stones.count(Black));
+}
+
+// 白の石の数を返す
+int32 GameBoard::getNumberOfWhiteStones() {
+    return static_cast<int32>(stones.count(White));
+}
+
 // 石の配置と反転
 void GameBoard::updateStones() {
     for (int32 i = 1; i <= 8; i++) {
