@@ -35,6 +35,10 @@ int32 GameBoard::getNumberOfWhiteStones() {
     return static_cast<int32>(stones.count(White));
 }
 
+int32 GameBoard::getCurrentPlayer() {
+    return currentPlayer;
+}
+
 // 石の配置と反転
 void GameBoard::updateStones() {
     for (int32 i = 1; i <= 8; i++) {

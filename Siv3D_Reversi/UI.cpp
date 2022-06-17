@@ -18,8 +18,17 @@ void UI::drawResetButton() {
 }
 
 void UI::drawNumberOfStones() {
-    drawNumberOfStonesText(Vec2{ 100, 500 }, U"$0 {}"_fmt(gameBoard.getNumberOfBlackStones()));
-    drawNumberOfStonesText(Vec2{ 300, 500 }, U"$1 {}"_fmt(gameBoard.getNumberOfWhiteStones()));
+    Vec2 blackStonesTextPos{ 100, 500 };
+    Vec2 whiteStonesTextPos{ 300, 500 };
+
+    if (gameBoard.getCurrentPlayer() == gameBoard.Black) {
+        drawPlayerFrame(blackStonesTextPos);
+    } else {
+        drawPlayerFrame(whiteStonesTextPos);
+    }
+
+    drawNumberOfStonesText(blackStonesTextPos, U"$0 {}"_fmt(gameBoard.getNumberOfBlackStones()));
+    drawNumberOfStonesText(whiteStonesTextPos, U"$1 {}"_fmt(gameBoard.getNumberOfWhiteStones()));
 }
 
 void UI::drawNumberOfStonesText(Vec2 penPos, String text) {
@@ -42,4 +51,9 @@ void UI::drawNumberOfStonesText(Vec2 penPos, String text) {
         glyph.texture.draw(penPos + glyph.getOffset());
         penPos.x += glyph.xAdvance;
     }
+}
+
+// 現在の手番の色のテキストを囲む
+void UI::drawPlayerFrame(Vec2 pos) {
+    Rect{ (int32)pos.x, (int32)pos.y, 100, 40 }.drawFrame(0, 5, Palette::Crimson);
 }

@@ -23,4 +23,6 @@ private:
     void drawNumberOfStones();
 
     void drawNumberOfStonesText(Vec2 penPos, String text);
+
+    void drawPlayerFrame(Vec2 pos);
 };
