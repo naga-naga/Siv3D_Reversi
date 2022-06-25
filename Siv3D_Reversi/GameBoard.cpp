@@ -5,10 +5,20 @@ GameBoard::GameBoard() {
 }
 
 void GameBoard::update() {
-    updateStones();
-    // 石を置ける場所がなければパス
-    if (not canPlaceStone()) {
-        changePlayer();
+    ClearPrint();
+    if (isGameOver()) {
+        Print << U"Game Over";
+    } else {
+        updateStones();
+        // 石を置ける場所がなければパス
+        if (not canPlaceStone()) {
+            changePlayer();
+
+            // 二人連続で置けなければゲームオーバー
+            if (not canPlaceStone()) {
+                gameOver = true;
+            }
+        }
     }
 }
 
@@ -23,6 +33,17 @@ void GameBoard::reset() {
     stones[5][4] = Black;
     stones[4][4] = White;
     stones[5][5] = White;
+
+    setCurrentPlayer(Black);
+    setGameOverFlag(false);
+}
+
+bool GameBoard::isGameOver() {
+    return gameOver;
+}
+
+void GameBoard::setGameOverFlag(bool flag) {
+    gameOver = flag;
 }
 
 // 黒の石の数を返す
@@ -37,6 +58,10 @@ int32 GameBoard::getNumberOfWhiteStones() {
 
 int32 GameBoard::getCurrentPlayer() {
     return currentPlayer;
+}
+
+void GameBoard::setCurrentPlayer(int32 player) {
+    currentPlayer = player;
 }
 
 // 石の配置と反転

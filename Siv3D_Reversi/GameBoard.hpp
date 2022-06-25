@@ -17,11 +17,17 @@ public:
 
     void reset();
 
+    bool isGameOver();
+
+    void setGameOverFlag(bool flag);
+
     int32 getNumberOfBlackStones();
 
     int32 getNumberOfWhiteStones();
 
     int32 getCurrentPlayer();
+
+    void setCurrentPlayer(int32 player);
 
 private:
     // 置かれた石を表す
@@ -32,6 +38,8 @@ private:
     int32 currentPlayer = Black;
 
     ColorF lineColor = ColorF{ 0.2 };
+
+    bool gameOver = false;
 
     void updateStones();
 
