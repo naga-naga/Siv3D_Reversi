@@ -10,6 +10,9 @@ void GameBoard::update() {
     ClearPrint();
     if (isGameOver()) {
         Print << U"Game Over";
+        if (SimpleGUI::Button(U"reset", Vec2{ 500, 10 })) {
+            reset();
+        }
     } else {
         updateStones();
         // 石を置ける場所がなければパス
