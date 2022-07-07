@@ -1,17 +1,19 @@
 ﻿#include "Common.hpp"
 #include "GameBoard.hpp"
+#include "Title.hpp"
 #include "UI.hpp"
 
 void Main() {
+    App manager;
+
+    manager.add<Title>(U"Title");
+    manager.add<GameBoard>(U"Game");
+
     Scene::SetBackground(ColorF{ Palette::Mediumseagreen });
 
-    GameBoard gameBoard;
-    UI ui{ gameBoard };
-
     while (System::Update()) {
-        gameBoard.draw();
-        gameBoard.update();
-
-        ui.draw();
+        if (not manager.update()) {
+            break;
+        }
     }
 }

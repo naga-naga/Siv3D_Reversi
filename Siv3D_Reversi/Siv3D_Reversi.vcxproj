@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Title.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -317,6 +318,7 @@
   <ItemGroup>
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="GameBoard.hpp" />
+    <ClInclude Include="Title.hpp" />
     <ClInclude Include="UI.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

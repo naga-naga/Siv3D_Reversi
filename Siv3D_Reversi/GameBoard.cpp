@@ -1,6 +1,8 @@
 ﻿#include "GameBoard.hpp"
 
-GameBoard::GameBoard() {
+GameBoard::GameBoard(const InitData& init)
+    : IScene{ init }
+{
     this->reset();
 }
 

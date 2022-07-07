@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Common.hpp"
 
-class GameBoard {
+class GameBoard : public App::Scene {
 public:
     static constexpr int32 CellSize = 50;
 
@@ -9,7 +9,7 @@ public:
 
     static constexpr int32 White = -1;
 
-    GameBoard();
+    GameBoard(const InitData& init);
 
     void update();
 
