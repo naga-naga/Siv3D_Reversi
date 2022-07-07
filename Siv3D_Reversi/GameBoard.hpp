@@ -21,11 +21,11 @@ public:
 
     void setGameOverFlag(bool flag);
 
-    int32 getNumberOfBlackStones();
+    int32 getNumberOfBlackStones() const;
 
-    int32 getNumberOfWhiteStones();
+    int32 getNumberOfWhiteStones() const;
 
-    int32 getCurrentPlayer();
+    int32 getCurrentPlayer() const;
 
     void setCurrentPlayer(int32 player);
 
@@ -41,11 +41,24 @@ private:
 
     bool gameOver = false;
 
+    const Font numberOfStonesFont{ 30 };
+
+    const Array<Texture> emojiStones = {
+        Texture{ U"⚫"_emoji },
+        Texture{ U"⚪"_emoji },
+    };
+
     void updateStones();
 
     void drawGridLine() const;
 
     void drawCells() const;
+
+    void drawNumberOfStones() const;
+
+    void drawNumberOfStonesText(Vec2 penPos, String text) const;
+
+    void drawPlayerFrame(Vec2 pos) const;
 
     int32 flipStones(Point cell);
 

@@ -27,6 +27,7 @@ void GameBoard::update() {
 void GameBoard::draw() const {
     drawGridLine();
     drawCells();
+    drawNumberOfStones();
 }
 
 void GameBoard::reset() {
@@ -49,16 +50,16 @@ void GameBoard::setGameOverFlag(bool flag) {
 }
 
 // 黒の石の数を返す
-int32 GameBoard::getNumberOfBlackStones() {
+int32 GameBoard::getNumberOfBlackStones() const {
     return static_cast<int32>(stones.count(Black));
 }
 
 // 白の石の数を返す
-int32 GameBoard::getNumberOfWhiteStones() {
+int32 GameBoard::getNumberOfWhiteStones() const {
     return static_cast<int32>(stones.count(White));
 }
 
-int32 GameBoard::getCurrentPlayer() {
+int32 GameBoard::getCurrentPlayer() const {
     return currentPlayer;
 }
 
@@ -155,6 +156,47 @@ void GameBoard::drawCells() const {
             Cursor::RequestStyle(CursorStyle::Hand);
         }
     }
+}
+
+void GameBoard::drawNumberOfStones() const {
+    Vec2 blackStonesTextPos{ 100, 500 };
+    Vec2 whiteStonesTextPos{ 300, 500 };
+
+    if (currentPlayer == Black) {
+        drawPlayerFrame(blackStonesTextPos);
+    } else {
+        drawPlayerFrame(whiteStonesTextPos);
+    }
+
+    drawNumberOfStonesText(blackStonesTextPos, U"$0 {}"_fmt(getNumberOfBlackStones()));
+    drawNumberOfStonesText(whiteStonesTextPos, U"$1 {}"_fmt(getNumberOfWhiteStones()));
+}
+
+void GameBoard::drawNumberOfStonesText(Vec2 penPos, String text) const {
+    bool onTag = false;
+
+    for (const auto& glyph : numberOfStonesFont.getGlyphs(text)) {
+        if (onTag) {
+            emojiStones[(glyph.codePoint - U'0')].resized(40).draw(penPos);
+            penPos.x += 30;
+            onTag = false;
+            continue;
+        }
+
+        if (glyph.codePoint == U'$') {
+            onTag = true;
+            continue;
+        }
+
+        onTag = false;
+        glyph.texture.draw(penPos + glyph.getOffset());
+        penPos.x += glyph.xAdvance;
+    }
+}
+
+// 現在の手番の色のテキストを囲む
+void GameBoard::drawPlayerFrame(Vec2 pos) const {
+    Rect{ (int32)pos.x, (int32)pos.y, 100, 40 }.drawFrame(0, 5, Palette::Crimson);
 }
 
 // 8方向の石をひっくり返す
