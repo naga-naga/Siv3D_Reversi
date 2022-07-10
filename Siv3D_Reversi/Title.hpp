@@ -15,4 +15,8 @@ private:
     const Font titleFont{ 40, Typeface::Regular, FontStyle::Bold };
 
     const Vec2 titleTextPos{ Scene::Center().x, Scene::Center().y - 150 };
+
+    const String startButtonText = U"スタート";
+
+    const Vec2 startButtonPos{ Scene::Center() };
 };

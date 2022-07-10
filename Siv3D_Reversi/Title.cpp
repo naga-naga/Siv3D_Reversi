@@ -9,7 +9,7 @@ void Title::update() {
     ClearPrint();
     Print << U"Title Scene";
 
-    if (MouseL.down()) {
+    if (SimpleGUI::ButtonAt(startButtonText, startButtonPos)) {
         changeScene(U"Game");
     }
 }
