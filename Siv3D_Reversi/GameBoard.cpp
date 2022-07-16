@@ -10,6 +10,16 @@ void GameBoard::update() {
     ClearPrint();
     if (isGameOver()) {
         Print << U"Game Over";
+        const int32 blackStonesNum = getNumberOfBlackStones();
+        const int32 whiteStonesNum = getNumberOfWhiteStones();
+        if (blackStonesNum > whiteStonesNum) {
+            Print << U"黒の勝ち";
+        } else if (blackStonesNum < whiteStonesNum) {
+            Print << U"白の勝ち";
+        } else {
+            Print << U"引き分け";
+        }
+
         if (SimpleGUI::Button(U"reset", Vec2{ 500, 10 })) {
             reset();
         }
