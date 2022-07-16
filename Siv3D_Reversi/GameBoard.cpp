@@ -202,7 +202,9 @@ void GameBoard::drawNumberOfStonesText(Vec2 penPos, String text) const {
 
 // 現在の手番の色のテキストを囲む
 void GameBoard::drawPlayerFrame(Vec2 pos) const {
-    Rect{ (int32)pos.x, (int32)pos.y, 100, 40 }.drawFrame(0, 5, Palette::Crimson);
+    if (not isGameOver()) {
+        Rect{ (int32)pos.x, (int32)pos.y, 100, 40 }.drawFrame(0, 5, Palette::Crimson);
+    }
 }
 
 // 8方向の石をひっくり返す
