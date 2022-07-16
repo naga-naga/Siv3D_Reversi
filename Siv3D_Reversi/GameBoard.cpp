@@ -13,6 +13,9 @@ void GameBoard::update() {
         if (SimpleGUI::Button(U"reset", Vec2{ 500, 10 })) {
             reset();
         }
+        if (SimpleGUI::Button(U"Back to Title", Vec2{ 500, 50 })) {
+            changeScene(U"Title");
+        }
     } else {
         updateStones();
         // 石を置ける場所がなければパス
