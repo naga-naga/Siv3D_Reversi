@@ -3,12 +3,6 @@
 
 class GameBoard : public App::Scene {
 public:
-    static constexpr int32 CellSize = 50;
-
-    static constexpr int32 Black = 1;
-
-    static constexpr int32 White = -1;
-
     GameBoard(const InitData& init);
 
     void update();
@@ -30,6 +24,12 @@ public:
     void setCurrentPlayer(int32 player);
 
 private:
+    static constexpr int32 CellSize = 50;
+
+    static constexpr int32 Black = 1;
+
+    static constexpr int32 White = -1;
+
     // 置かれた石を表す
     // 角での計算を楽にするため，上下左右1マスずつ大きくとる
     // 実際には 1 ~ 8 を使う
