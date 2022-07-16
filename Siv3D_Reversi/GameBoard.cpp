@@ -47,7 +47,7 @@ void GameBoard::reset() {
     setGameOverFlag(false);
 }
 
-bool GameBoard::isGameOver() {
+bool GameBoard::isGameOver() const {
     return gameOver;
 }
 
@@ -321,7 +321,7 @@ void GameBoard::changePlayer() {
 }
 
 // 石を置ける場所があるか？
-bool GameBoard::canPlaceStone() {
+bool GameBoard::canPlaceStone() const {
     const Array<Point> cellsCanPlaceStone = findCellsCanPlaceStone();
     return not cellsCanPlaceStone.isEmpty();
 }

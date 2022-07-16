@@ -17,7 +17,7 @@ public:
 
     void reset();
 
-    bool isGameOver();
+    bool isGameOver() const;
 
     void setGameOverFlag(bool flag);
 
@@ -70,5 +70,5 @@ private:
 
     void changePlayer();
 
-    bool canPlaceStone();
+    bool canPlaceStone() const;
 };
