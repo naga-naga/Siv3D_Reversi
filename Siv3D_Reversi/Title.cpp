@@ -6,9 +6,6 @@ Title::Title(const InitData& init)
 }
 
 void Title::update() {
-    ClearPrint();
-    Print << U"Title Scene";
-
     if (SimpleGUI::ButtonAt(startButtonText, startButtonPos)) {
         changeScene(U"Game");
     }
