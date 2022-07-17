@@ -43,6 +43,12 @@ private:
 
     const Font numberOfStonesFont{ 30 };
 
+    const Font gameOverFont{ 40 };
+
+    const Vec2 gameOverTextPos{ 250, 175 };
+
+    const Rect gameOverTextBackPanel{ 50, 50, 400, 400};
+
     const Array<Texture> emojiStones = {
         Texture{ U"⚫"_emoji },
         Texture{ U"⚪"_emoji },
@@ -59,6 +65,8 @@ private:
     void drawNumberOfStonesText(Vec2 penPos, String text) const;
 
     void drawPlayerFrame(Vec2 pos) const;
+
+    void drawGameOverText() const;
 
     int32 flipStones(Point cell);
 

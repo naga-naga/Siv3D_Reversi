@@ -9,17 +9,6 @@ GameBoard::GameBoard(const InitData& init)
 void GameBoard::update() {
     ClearPrint();
     if (isGameOver()) {
-        Print << U"Game Over";
-        const int32 blackStonesNum = getNumberOfBlackStones();
-        const int32 whiteStonesNum = getNumberOfWhiteStones();
-        if (blackStonesNum > whiteStonesNum) {
-            Print << U"黒の勝ち";
-        } else if (blackStonesNum < whiteStonesNum) {
-            Print << U"白の勝ち";
-        } else {
-            Print << U"引き分け";
-        }
-
         if (SimpleGUI::Button(U"reset", Vec2{ 500, 10 })) {
             reset();
         }
@@ -44,6 +33,7 @@ void GameBoard::draw() const {
     drawGridLine();
     drawCells();
     drawNumberOfStones();
+    drawGameOverText();
 }
 
 void GameBoard::reset() {
@@ -208,6 +198,25 @@ void GameBoard::drawNumberOfStonesText(Vec2 penPos, String text) const {
         glyph.texture.draw(penPos + glyph.getOffset());
         penPos.x += glyph.xAdvance;
     }
+}
+
+void GameBoard::drawGameOverText() const {
+    if (not isGameOver()) return;
+
+    const int32 blackStonesNum = getNumberOfBlackStones();
+    const int32 whiteStonesNum = getNumberOfWhiteStones();
+
+    String text;
+    if (blackStonesNum > whiteStonesNum) {
+        text = U"黒の勝ち";
+    } else if (blackStonesNum < whiteStonesNum) {
+        text = U"白の勝ち";
+    } else {
+        text = U"引き分け";
+    }
+
+    gameOverTextBackPanel.draw(ColorF{ 255, 255, 255, 0.75 });
+    gameOverFont(text).drawAt(gameOverTextPos, Palette::Black);
 }
 
 // 現在の手番の色のテキストを囲む
