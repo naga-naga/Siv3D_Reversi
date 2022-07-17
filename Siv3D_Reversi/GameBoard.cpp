@@ -8,10 +8,10 @@ GameBoard::GameBoard(const InitData& init)
 
 void GameBoard::update() {
     if (isGameOver()) {
-        if (SimpleGUI::Button(U"reset", Vec2{ 500, 10 })) {
+        if (SimpleGUI::Button(U"reset", Vec2{ 500, 150 })) {
             reset();
         }
-        if (SimpleGUI::Button(U"Back to Title", Vec2{ 500, 50 })) {
+        if (SimpleGUI::Button(U"Back to Title", Vec2{ 500, 200 })) {
             changeScene(U"Title");
         }
     } else {
@@ -214,8 +214,7 @@ void GameBoard::drawGameOverText() const {
         text = U"引き分け";
     }
 
-    gameOverTextBackPanel.draw(ColorF{ 255, 255, 255, 0.75 });
-    gameOverFont(text).drawAt(gameOverTextPos, Palette::Black);
+    gameOverFont(text).draw(gameOverTextPos, Palette::White);
 }
 
 // 現在の手番の色のテキストを囲む

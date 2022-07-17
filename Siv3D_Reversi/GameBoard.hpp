@@ -45,7 +45,7 @@ private:
 
     const Font gameOverFont{ 40 };
 
-    const Vec2 gameOverTextPos{ 250, 175 };
+    const Vec2 gameOverTextPos{ 500, 50 };
 
     const Rect gameOverTextBackPanel{ 50, 50, 400, 400};
 
