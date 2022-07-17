@@ -8,10 +8,10 @@ GameBoard::GameBoard(const InitData& init)
 
 void GameBoard::update() {
     if (isGameOver()) {
-        if (SimpleGUI::Button(U"reset", Vec2{ 500, 150 })) {
+        if (SimpleGUI::Button(retryText, retryButtonPos)) {
             reset();
         }
-        if (SimpleGUI::Button(U"Back to Title", Vec2{ 500, 200 })) {
+        if (SimpleGUI::Button(backToTitleText, backToTitleButtonPos)) {
             changeScene(U"Title");
         }
     } else {

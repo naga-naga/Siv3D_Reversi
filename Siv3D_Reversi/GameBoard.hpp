@@ -47,7 +47,13 @@ private:
 
     const Vec2 gameOverTextPos{ 500, 50 };
 
-    const Rect gameOverTextBackPanel{ 50, 50, 400, 400};
+    const String retryText = U"もういちど";
+
+    const Vec2 retryButtonPos{ 500, 150 };
+
+    const String backToTitleText = U"タイトルに戻る";
+
+    const Vec2 backToTitleButtonPos{ 500, 200 };
 
     const Array<Texture> emojiStones = {
         Texture{ U"⚫"_emoji },
