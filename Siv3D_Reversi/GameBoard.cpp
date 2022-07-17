@@ -7,7 +7,6 @@ GameBoard::GameBoard(const InitData& init)
 }
 
 void GameBoard::update() {
-    ClearPrint();
     if (isGameOver()) {
         if (SimpleGUI::Button(U"reset", Vec2{ 500, 10 })) {
             reset();
